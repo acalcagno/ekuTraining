@@ -1,33 +1,23 @@
 class TestClass:
     @classmethod
     def setup_class(cls):
-        print('Setup TestClass!')
+        print("Setup {}".format(cls.__name__))
 
     @classmethod
     def teardown_class(cls):
-        print('Teardown TestClass!')
+        print("Teardown {}".format(cls.__name__))
 
     def setup_method(self, method):
-        if method == self.test1:
-            print("\nSetting up test 1")
-        elif method == self.test2:
-            print("\nSetting up test 2")
-        else:
-            print("\nSetting up unknown test")
+        print("\nSetting up method{}".format(method.__name__))
 
     def teardown_method(self, method):
-        if method == self.test1:
-            print("\nTearing down test 1")
-        elif method == self.test2:
-            print("\nTearing down test 2")
-        else:
-            print("\nTearing down unknown test")
+        print("\nTearing down method {}".format(method.__name__))
 
     def test1(self):
         print('Executing test1!')
         assert True
 
-    def test1(self):
+    def test2(self):
         print('Executing test2!')
         assert True
         

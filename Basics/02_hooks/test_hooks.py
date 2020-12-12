@@ -2,25 +2,13 @@ def setup_module(module):
     print("setup module")
 
 def teardown_module(module):
-    print("tearing down module module")
-
-
+    print("tearing down module {}".format(module.__name__))
 
 def setup_function(function):
-    if function == test1:
-        print("\nSetting up test1")
-    elif function == test2:
-        print("\nSetting up test2")
-    else:
-        print("\nSetting up unknown test")
+    print("\nSetting up function {}".format(function.__name__))
 
 def teardown_function(function):
-    if function == test1:
-        print("\nTearing donw test1")
-    elif function == test1:
-        print("\nTearing donw test2")
-    else:
-        print("\nTearing donw unknown test")
+    print("\Tearing down function {}".format(function.__name__))    
 
 def test1():
     print("executing test 1")

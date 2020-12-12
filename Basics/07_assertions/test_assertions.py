@@ -15,6 +15,5 @@ def test_arrayAssert():
 def test_dictAssert():
     assert {"1":1} == {"1":1}
 
-
 def test_float2Assert():
     assert 0.1 + 0.2 == approx(0.3)

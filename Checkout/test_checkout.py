@@ -30,4 +30,4 @@ def test_calculates_total_with_two_different_items(checkout):
     assert checkout.calculateTotal() == 3
 
 def test_can_add_discount(checkout):
-    
+    pass

@@ -8,5 +8,5 @@ def setup(request):
 
 
 def test1(setup):
-    print("\nsetup = {}".format(setup))
+    print("setup = {}".format(setup))
     assert True
