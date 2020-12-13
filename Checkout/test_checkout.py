@@ -1,33 +1,46 @@
-from Checkout import Checkout
 import pytest
-
+from Checkout import Checkout
 
 @pytest.fixture()
-def checkout():
-    return Checkout()
+def co():
+    co = Checkout()
+    co.addItemPrice("cheese", 2)
+    co.addItemPrice("chocolate", 3)
+    return co
 
 
-def test_calculates_total(checkout):
-    checkout.addItemPrice("a", 1)
-    checkout.addItem("a")
+def test_total_for_multiple_items(co):
+    co.addItem("cheese")
 
-    assert checkout.calculateTotal() == 1
+    total = co.getTotal()
+
+    assert total == 2
+    
+
+def test_total_for_different_items(co):
+    co.addItem("cheese")
+    co.addItem("chocolate")
+
+    total = co.getTotal()
+
+    assert total == 5
 
 
-def test_calculates_total_with_two_items(checkout):
-    checkout.addItemPrice("a", 1)
-    checkout.addItem("a")
-    checkout.addItem("a")
+def test_can_add_discount(co):
+    co.addDiscount("cheese", 3, 2)
 
-    assert checkout.calculateTotal() == 2
 
-def test_calculates_total_with_two_different_items(checkout):
-    checkout.addItemPrice("a", 1)
-    checkout.addItemPrice("b", 2)
-    checkout.addItem("a")
-    checkout.addItem("b")
+def test_can_apply_discount(co):
+    co.addDiscount("cheese", 3, 2)
+    co.addItem("cheese")
+    co.addItem("cheese")
+    co.addItem("cheese")
 
-    assert checkout.calculateTotal() == 3
+    total = co.getTotal()
 
-def test_can_add_discount(checkout):
-    pass
+    assert total == 2
+
+
+def test_exception_with_item_without_price(co):
+    with pytest.raises(Exception):
+        co.addItem("sand")
